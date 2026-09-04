@@ -1,0 +1,7 @@
+order_id,customer,country,amount
+1001,Alice,Denmark,50
+1002,Bob,Sweden,80
+1003,Alice,Denmark,30
+1004,Charlie,Norway,
+1005,Bob,Sweden,120
+1006,Alice,Denmark,50
