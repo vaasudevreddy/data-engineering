@@ -1,0 +1,20 @@
+[
+    {
+        "order_id": "1001",
+        "customer": "Alice",
+        "country": "Denmark",
+        "amount": 50
+    },
+    {
+    "order_id": "1002",
+    "customer": "Bob",
+    "country": "Sweden",
+    "amount": 80
+    },
+    {
+        "order_id": "1003",
+        "customer": "Alice",
+        "country": "Denmark",
+        "amount": 30
+    }
+]
