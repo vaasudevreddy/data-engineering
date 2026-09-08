@@ -1,0 +1,26 @@
+[
+    {
+        "order_id": "1001",
+        "customer": "Alice",
+        "amount": 50,
+        "amount_with_tax": 60.0
+    },
+    {
+        "order_id": "1002",
+        "customer": "Bob",
+        "amount": 80,
+        "amount_with_tax": 96.0
+    },
+    {
+        "order_id": "1005",
+        "customer": "Eva",
+        "amount": 120,
+        "amount_with_tax": 144.0
+    },
+    {
+        "order_id": "1006",
+        "customer": "Frank",
+        "amount": 30,
+        "amount_with_tax": 36.0
+    }
+]
