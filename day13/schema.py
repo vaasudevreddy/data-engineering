@@ -1,0 +1,4 @@
+from metadata import PIPELINE_METADATA
+
+
+EXPECTED_SCHEMA = PIPELINE_METADATA["schema"]
