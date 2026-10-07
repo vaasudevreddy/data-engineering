@@ -1,0 +1,10 @@
+2026-10-07 15:13:49,669 | INFO | Pipeline started
+2026-10-07 15:13:49,670 | INFO | Reading source_orders.csv
+2026-10-07 15:13:49,670 | INFO | Orders extracted: 5
+2026-10-07 15:13:49,670 | INFO | Connecting to PostgreSQL
+2026-10-07 15:13:49,702 | INFO | Creating target table if it does not exist
+2026-10-07 15:13:49,719 | INFO | Target table is ready
+2026-10-07 15:13:49,719 | INFO | Loading 5 orders into PostgreSQL
+2026-10-07 15:13:49,723 | INFO | Orders loaded successfully
+2026-10-07 15:13:49,723 | INFO | Pipeline completed successfully
+2026-10-07 15:13:49,723 | INFO | Database connection closed
