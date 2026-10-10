@@ -5,7 +5,12 @@ __pycache__/
 # Virtual environments
 .venv/
 venv/
-env/
+# Day 17 - Apache Airflow
+day17/.env
+day17/config/
+day17/logs/
+day17/dags/__pycache__/
+day17/plugins/__pycache__/env/
 
 # Environment variables and secrets
 .env
