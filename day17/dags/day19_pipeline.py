@@ -9,9 +9,18 @@ from airflow.sdk import dag, task
     schedule=None,
     start_date=pendulum.datetime(2026, 10, 13, tz="UTC"),
     catchup=False,
-    tags=["day19", "data-pipeline"],
+    tags=["day19", "data-quality"],
 )
 def day19_orders_pipeline():
+
+    @task
+    def validate_orders():
+        script_path = "/opt/airflow/day19/validate_orders.py"
+
+        subprocess.run(
+            ["python", script_path],
+            check=True,
+        )
 
     @task
     def process_orders():
@@ -22,7 +31,7 @@ def day19_orders_pipeline():
             check=True,
         )
 
-    process_orders()
+    validate_orders() >> process_orders()
 
 
 day19_orders_pipeline()

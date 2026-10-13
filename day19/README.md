@@ -35,3 +35,20 @@ Build and execute a data-processing pipeline orchestrated by Apache Airflow.
 ## Key Takeaway
 Apache Airflow can orchestrate Python data-processing scripts, monitor execution, and provide logs for troubleshooting.
 
+
+
+## Day 20 – Data Quality and Validation
+
+- Created `validate_orders.py` to validate input data.
+- Checked required fields for missing values.
+- Detected duplicate order identifiers.
+- Validated numeric quantities and prices.
+- Rejected zero or negative quantities and negative prices.
+- Tested duplicate data and confirmed validation fails.
+- Integrated validation into the Airflow workflow.
+- Confirmed processing is blocked when validation fails.
+- Verified that valid data passes validation and processes successfully.
+
+## Key Takeaway
+
+Data validation before processing helps prevent invalid records from entering a data pipeline.
