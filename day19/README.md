@@ -52,3 +52,14 @@ Apache Airflow can orchestrate Python data-processing scripts, monitor execution
 ## Key Takeaway
 
 Data validation before processing helps prevent invalid records from entering a data pipeline.
+
+
+## Day 21 — Logging and Error Handling
+
+- Added Python logging to `validate_orders.py`.
+- Logged the start of validation and the input filename.
+- Logged successful validation with the number of orders checked.
+- Logged validation errors and exited with a non-zero status when validation failed.
+- Verified the validation task and processing task in Apache Airflow.
+
+**Result:** The validation task successfully checked all 8 orders, and the processing task completed successfully.
