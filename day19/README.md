@@ -63,3 +63,13 @@ Data validation before processing helps prevent invalid records from entering a 
 - Verified the validation task and processing task in Apache Airflow.
 
 **Result:** The validation task successfully checked all 8 orders, and the processing task completed successfully.
+
+
+## Day 22 — Configurable Input Files
+
+- Updated `validate_orders.py` to accept an input CSV filename as a command-line argument.
+- Updated `process_orders.py` to accept an input CSV filename instead of always using `orders.csv`.
+- Updated the Apache Airflow pipeline to pass the selected filename to both tasks.
+- Tested the processing script locally and verified the Airflow pipeline successfully.
+
+**Result:** Both validation and processing tasks completed successfully using `orders.csv`.
