@@ -73,3 +73,15 @@ Data validation before processing helps prevent invalid records from entering a 
 - Tested the processing script locally and verified the Airflow pipeline successfully.
 
 **Result:** Both validation and processing tasks completed successfully using `orders.csv`.
+
+
+
+## Day 23 — Environment-Based Configuration
+
+- Added the `ORDERS_INPUT_FILE` environment variable to the shared Airflow Docker Compose configuration.
+- Updated `day19_pipeline.py` to read the input filename using Python's `os.getenv()`.
+- Updated both validation and processing tasks to use the configured filename.
+- Verified that Docker Compose resolves `ORDERS_INPUT_FILE` to `orders.csv`.
+- Confirmed that the Airflow validation and processing tasks succeeded.
+
+**Key learning:** Environment variables separate configuration from application code, making pipelines easier to configure across environments.
