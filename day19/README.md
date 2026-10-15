@@ -85,3 +85,16 @@ Data validation before processing helps prevent invalid records from entering a 
 - Confirmed that the Airflow validation and processing tasks succeeded.
 
 **Key learning:** Environment variables separate configuration from application code, making pipelines easier to configure across environments.
+
+
+
+## Day 24 — Robust CSV Validation
+
+- Added checks for empty CSV files.
+- Added checks for missing required column headers.
+- Preserved existing validation for required values, duplicate order IDs, quantities, and prices.
+- Tested valid input, missing columns, and empty files.
+- Removed temporary test files and verified the original 8 orders still pass validation.
+- Verified the updated validation and processing tasks in Apache Airflow.
+
+**Result:** Both Airflow tasks completed successfully with the normal input file.

@@ -12,9 +12,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 data_dir = Path(__file__).parent / "data"
-input_file = data_dir / (
-    sys.argv[1] if len(sys.argv) > 1 else "orders.csv"
-)
+input_name = sys.argv[1] if len(sys.argv) > 1 else "orders.csv"
+input_file = data_dir / input_name
 
 required_fields = [
     "order_id",
@@ -28,12 +27,36 @@ logger.info("Starting order validation")
 logger.info("Input file: %s", input_file.name)
 
 try:
-    with input_file.open("r", newline="") as file:
+    with input_file.open("r", newline="", encoding="utf-8-sig") as file:
         reader = csv.DictReader(file)
+
+        if reader.fieldnames is None:
+            logger.error("Validation failed: CSV file is empty")
+            sys.exit(1)
+
+        headers = [header.strip() for header in reader.fieldnames]
+
+        missing_fields = [
+            field for field in required_fields
+            if field not in headers
+        ]
+
+        if missing_fields:
+            logger.error(
+                "Validation failed: Missing required columns: %s",
+                ", ".join(missing_fields)
+            )
+            sys.exit(1)
+
+        reader.fieldnames = headers
         orders = list(reader)
 
 except OSError as error:
     logger.error("Could not read input file: %s", error)
+    sys.exit(1)
+
+if not orders:
+    logger.error("Validation failed: CSV contains no orders")
     sys.exit(1)
 
 errors = []
