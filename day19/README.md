@@ -124,3 +124,30 @@ Result: 13 tests passed.
 - Testing invalid input
 - Temporary files using pytest's `tmp_path` fixture
 - Running tests across multiple project directories
+
+
+
+
+
+## Day 26: Testing Data Processing
+
+Created automated tests for the order-processing script using pytest.
+
+### Tests implemented
+- Verify that processed order totals match calculations from the original input.
+- Verify that invalid numeric quantities cause processing to fail.
+- Run processing tests alongside existing validation tests.
+
+### Full test suite
+Command:
+`python3 -m pytest -v`
+
+Result: 15 tests passed.
+
+### Key concepts learned
+- Testing data transformations
+- Comparing expected and actual results
+- Testing invalid numeric input
+- Checking process exit codes
+- Running the complete test suite
+
