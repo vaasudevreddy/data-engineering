@@ -25,3 +25,4 @@ day17/plugins/__pycache__/env/
 __pycache__/
 .pytest_cache/
 *.pyc
+day19/data/processed_orders.csv

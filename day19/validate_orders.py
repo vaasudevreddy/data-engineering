@@ -13,7 +13,8 @@ logger = logging.getLogger(__name__)
 
 data_dir = Path(__file__).parent / "data"
 input_name = sys.argv[1] if len(sys.argv) > 1 else "orders.csv"
-input_file = data_dir / input_name
+input_path = Path(input_name)
+input_file = input_path if input_path.is_absolute() else data_dir / input_path
 
 required_fields = [
     "order_id",

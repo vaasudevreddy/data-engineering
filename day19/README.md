@@ -98,3 +98,29 @@ Data validation before processing helps prevent invalid records from entering a 
 - Verified the updated validation and processing tasks in Apache Airflow.
 
 **Result:** Both Airflow tasks completed successfully with the normal input file.
+
+
+
+
+
+## Day 25: Automated Testing
+
+Created automated tests using pytest to verify order data validation.
+
+### Tests implemented
+- Valid orders pass validation.
+- Empty CSV files are rejected.
+- CSV files with missing required columns are rejected.
+
+### Full test suite
+Command:
+`python3 -m pytest -v`
+
+Result: 13 tests passed.
+
+### Key concepts learned
+- Automated testing with pytest
+- Assertions and exit codes
+- Testing invalid input
+- Temporary files using pytest's `tmp_path` fixture
+- Running tests across multiple project directories
