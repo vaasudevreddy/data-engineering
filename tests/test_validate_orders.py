@@ -124,3 +124,35 @@ def test_process_orders_rejects_invalid_quantity(tmp_path):
     finally:
         (data_dir / "orders_invalid.csv").unlink(missing_ok=True)
 
+
+
+def test_process_orders_rejects_empty_input(tmp_path):
+    import subprocess
+    import sys
+    from pathlib import Path
+
+    project_dir = Path(__file__).resolve().parents[1]
+    data_dir = project_dir / "day19" / "data"
+    script = project_dir / "day19" / "process_orders.py"
+
+    empty_file = data_dir / "orders_empty.csv"
+    output_file = data_dir / "processed_orders.csv"
+    original_output = output_file.read_bytes() if output_file.exists() else None
+
+    empty_file.write_text("", encoding="utf-8")
+
+    try:
+        result = subprocess.run(
+            [sys.executable, str(script), "orders_empty.csv"],
+            capture_output=True,
+            text=True,
+        )
+
+        assert result.returncode != 0
+        assert "No orders found" in result.stderr
+
+        if original_output is not None:
+            assert output_file.read_bytes() == original_output
+    finally:
+        empty_file.unlink(missing_ok=True)
+

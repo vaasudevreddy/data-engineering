@@ -13,9 +13,31 @@ with input_file.open("r", newline="") as file:
     reader = csv.DictReader(file)
     orders = list(reader)
 
+if not orders:
+    raise ValueError(f"No orders found in {input_file.name}")
+
 for order in orders:
-    quantity = int(order["quantity"])
-    price = float(order["price"])
+    try:
+        quantity = int(order["quantity"])
+        price = float(order["price"])
+    except (ValueError, TypeError) as error:
+        raise ValueError(
+            f"Invalid quantity or price for order "
+            f"{order.get('order_id', 'unknown')}"
+        ) from error
+
+    if quantity <= 0:
+        raise ValueError(
+            f"Quantity must be positive for order "
+            f"{order.get('order_id', 'unknown')}"
+        )
+
+    if price < 0:
+        raise ValueError(
+            f"Price cannot be negative for order "
+            f"{order.get('order_id', 'unknown')}"
+        )
+
     order["total"] = round(quantity * price, 2)
 
 with output_file.open("w", newline="") as file:

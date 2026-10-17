@@ -151,3 +151,28 @@ Result: 15 tests passed.
 - Checking process exit codes
 - Running the complete test suite
 
+
+
+
+## Day 27: Safer Data Processing
+
+Improved the order-processing script to reject invalid input before writing output.
+
+### Improvements
+- Reject empty CSV files.
+- Reject non-numeric quantities and prices.
+- Reject quantities that are zero or negative.
+- Reject negative prices.
+- Preserve existing output when input validation fails.
+
+### Testing
+Command: `python3 -m pytest -v`
+
+Result: 16 tests passed.
+
+### Key concepts learned
+- Input validation
+- Exception handling
+- Safe output management
+- Regression testing
+
