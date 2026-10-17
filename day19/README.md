@@ -201,3 +201,16 @@ Result: 17 tests passed.
 - Exception handling and cleanup
 - Testing file-writing failures
 
+
+
+
+
+## Day 29 — Reusable Processing Functions
+
+- Created a reusable `calculate_total()` function.
+- Refactored order processing into a `process_orders()` function.
+- Used `if __name__ == "__main__":` to separate imports from script execution.
+- Added a unit test for the total calculation.
+- Verified all 18 automated tests pass.
+- Confirmed the pipeline processes all 8 orders successfully.
+

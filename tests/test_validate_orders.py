@@ -191,3 +191,18 @@ def test_existing_output_is_preserved_if_temp_write_fails(tmp_path):
             output_file.write_bytes(original_output)
 
 
+
+
+def test_calculate_total():
+    import sys
+    from pathlib import Path
+
+    project_dir = Path(__file__).resolve().parents[1]
+    sys.path.insert(0, str(project_dir / "day19"))
+
+    from process_orders import calculate_total
+
+    assert calculate_total(3, 12.50) == 37.50
+    assert calculate_total(2, 10.00) == 20.00
+    assert calculate_total(1, 0.00) == 0.00
+
