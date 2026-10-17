@@ -40,11 +40,22 @@ for order in orders:
 
     order["total"] = round(quantity * price, 2)
 
-with output_file.open("w", newline="") as file:
-    fieldnames = list(orders[0].keys())
-    writer = csv.DictWriter(file, fieldnames=fieldnames)
-    writer.writeheader()
-    writer.writerows(orders)
+
+temp_output_file = output_file.with_suffix(".tmp")
+
+try:
+    with temp_output_file.open("w", newline="") as file:
+        fieldnames = list(orders[0].keys())
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(orders)
+
+    temp_output_file.replace(output_file)
+
+except Exception:
+    if temp_output_file.exists():
+        temp_output_file.unlink()
+    raise
 
 print(f"Processed {len(orders)} orders from {input_file.name}.")
 print(f"Saved results to {output_file}")

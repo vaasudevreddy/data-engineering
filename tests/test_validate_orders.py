@@ -156,3 +156,38 @@ def test_process_orders_rejects_empty_input(tmp_path):
     finally:
         empty_file.unlink(missing_ok=True)
 
+
+
+
+
+def test_existing_output_is_preserved_if_temp_write_fails(tmp_path):
+    import subprocess
+    import sys
+    from pathlib import Path
+
+    project_dir = Path(__file__).resolve().parents[1]
+    data_dir = project_dir / "day19" / "data"
+    script = project_dir / "day19" / "process_orders.py"
+
+    output_file = data_dir / "processed_orders.csv"
+    temp_file = output_file.with_suffix(".tmp")
+    original_output = output_file.read_bytes() if output_file.exists() else None
+
+    temp_file.mkdir(exist_ok=True)
+
+    try:
+        result = subprocess.run(
+            [sys.executable, str(script), "orders.csv"],
+            capture_output=True,
+            text=True,
+        )
+
+        assert result.returncode != 0
+        assert output_file.read_bytes() == original_output
+        assert temp_file.is_dir()
+    finally:
+        temp_file.rmdir()
+        if original_output is not None:
+            output_file.write_bytes(original_output)
+
+

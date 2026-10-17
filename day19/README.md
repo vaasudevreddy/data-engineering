@@ -176,3 +176,28 @@ Result: 16 tests passed.
 - Safe output management
 - Regression testing
 
+
+
+
+
+## Day 28: Safe Output Writing
+
+Updated the order-processing pipeline to write results to a temporary file before replacing the final output.
+
+### Improvements
+- Write processed orders to a temporary file.
+- Replace the final output only after the temporary write succeeds.
+- Clean up the temporary file when writing fails.
+- Test that existing output is preserved when the temporary output path cannot be opened.
+
+### Testing
+Command: `python3 -m pytest -v`
+
+Result: 17 tests passed.
+
+### Key concepts learned
+- Temporary files
+- Safe output replacement
+- Exception handling and cleanup
+- Testing file-writing failures
+
