@@ -11,19 +11,18 @@ def calculate_total(quantity, price):
     return round(quantity * price, 2)
 
 
-def process_orders(input_name="orders.csv"):
-    input_file = data_dir / input_name
-    output_file = data_dir / "processed_orders.csv"
-
-    # Read the input orders
+def load_orders(input_file):
+    """Load orders from a CSV file."""
     with input_file.open("r", newline="") as file:
         reader = csv.DictReader(file)
-        orders = list(reader)
+        return list(reader)
 
+
+def validate_and_process_orders(orders, input_file):
+    """Validate orders and calculate totals."""
     if not orders:
         raise ValueError(f"No orders found in {input_file.name}")
 
-    # Validate orders and calculate totals
     for order in orders:
         try:
             quantity = int(order["quantity"])
@@ -48,7 +47,14 @@ def process_orders(input_name="orders.csv"):
 
         order["total"] = calculate_total(quantity, price)
 
-    # Write to a temporary file before replacing the output
+    return orders
+
+
+def write_orders(orders, output_file):
+    """Write orders safely using a temporary file."""
+    if not orders:
+        raise ValueError("Cannot write an empty list of orders")
+
     temp_output_file = output_file.with_suffix(".tmp")
 
     try:
@@ -64,6 +70,16 @@ def process_orders(input_name="orders.csv"):
         if temp_output_file.is_file():
             temp_output_file.unlink()
         raise
+
+
+def process_orders(input_name="orders.csv"):
+    """Run the order-processing pipeline."""
+    input_file = data_dir / input_name
+    output_file = data_dir / "processed_orders.csv"
+
+    orders = load_orders(input_file)
+    orders = validate_and_process_orders(orders, input_file)
+    write_orders(orders, output_file)
 
     print(f"Processed {len(orders)} orders from {input_file.name}.")
     print(f"Saved results to {output_file}")

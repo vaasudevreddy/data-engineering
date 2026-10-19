@@ -214,3 +214,23 @@ Result: 17 tests passed.
 - Verified all 18 automated tests pass.
 - Confirmed the pipeline processes all 8 orders successfully.
 
+
+
+
+
+
+
+## Day 30 — Modular Order Processing Pipeline
+
+- Created `load_orders()` to read input data.
+- Created `validate_and_process_orders()` to validate orders and calculate totals.
+- Created `write_orders()` to save output safely using a temporary file.
+- Kept `process_orders()` as the main pipeline coordinator.
+- Added a unit test for `write_orders()`.
+- Verified all 19 automated tests pass.
+- Confirmed the pipeline processes all 8 orders successfully.
+
+### Key Learning
+
+Separation of concerns: each function has a specific responsibility, making the pipeline easier to test, maintain, and reuse.
+

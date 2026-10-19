@@ -206,3 +206,27 @@ def test_calculate_total():
     assert calculate_total(2, 10.00) == 20.00
     assert calculate_total(1, 0.00) == 0.00
 
+
+
+
+
+def test_write_orders_creates_output_file(tmp_path):
+    import csv
+    from process_orders import write_orders
+
+    output_file = tmp_path / "processed_orders.csv"
+    orders = [
+        {"order_id": "1001", "quantity": 2, "price": 10.0, "total": 20.0}
+    ]
+
+    write_orders(orders, output_file)
+
+    assert output_file.exists()
+
+    with output_file.open("r", newline="") as file:
+        rows = list(csv.DictReader(file))
+
+    assert len(rows) == 1
+    assert rows[0]["order_id"] == "1001"
+    assert rows[0]["total"] == "20.0"
+
